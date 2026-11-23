@@ -1,38 +1,31 @@
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import './App.css'
-
-type User = {
-  id: string
-  username: string
-  created_at: string
-}
-
-type Page = 'register' | 'login' | 'panel'
-
-type RequestMethod = 'GET' | 'POST'
+import Panel from './Panel'
 
 type ApiResponse = {
-  user?: User
+  user?: {
+    id: string
+    username: string
+    created_at: string
+  }
   error?: string
   message?: string
 }
 
-export default function App() {
-  const [page, setPage] = useState<Page>('register')
+function LoginPage() {
+  const navigate = useNavigate()
+
+  const [page, setPage] = useState<'register' | 'login'>('register')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState<User | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function request(
-    url: string,
-    method: RequestMethod = 'POST',
-    body?: Record<string, string>
-  ): Promise<ApiResponse> {
+  async function request(url: string, body?: Record<string, string>) {
     const response = await fetch(url, {
-      method,
+      method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
       ...(body ? { body: JSON.stringify(body) } : {})
@@ -47,102 +40,30 @@ export default function App() {
     return data
   }
 
-  function getErrorMessage(err: unknown): string {
-    return err instanceof Error ? err.message : 'Wystąpił nieznany błąd.'
-  }
-
-  async function checkSession() {
-    try {
-      const data = await request('/api/me', 'GET')
-
-      if (data.user) {
-        setUser(data.user)
-        setPage('panel')
-      }
-    } catch {
-      setUser(null)
-      setPage('register')
-    }
-  }
-
-  useEffect(() => {
-    checkSession()
-  }, [])
-
-  async function handleRegister() {
+  async function handleSubmit() {
     setError('')
     setLoading(true)
 
     try {
-      await request('/api/register', 'POST', {
-        username,
-        password
-      })
-
-      setPassword('')
-      setPage('login')
-    } catch (err: unknown) {
-      setError(getErrorMessage(err))
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  async function handleLogin() {
-    setError('')
-    setLoading(true)
-
-    try {
-      const data = await request('/api/login', 'POST', {
-        username,
-        password
-      })
-
-      if (data.user) {
-        setUser(data.user)
-        setPage('panel')
+      if (page === 'register') {
+        await request('/api/register', { username, password })
         setPassword('')
+        setPage('login')
+      } else {
+        const data = await request('/api/login', { username, password })
+
+        if (data.user) {
+          setPassword('')
+          navigate('/panel')
+        } else {
+          setError('Nie udało się zalogować.')
+        }
       }
     } catch (err: unknown) {
-      setError(getErrorMessage(err))
+      setError(err instanceof Error ? err.message : 'Wystąpił nieznany błąd.')
     } finally {
       setLoading(false)
     }
-  }
-
-  async function handleLogout() {
-    setError('')
-    setLoading(true)
-
-    try {
-      await request('/api/logout')
-      setUser(null)
-      setPage('login')
-      setPassword('')
-    } catch (err: unknown) {
-      setError(getErrorMessage(err))
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (page === 'panel' && user) {
-    return (
-      <div className="MainApp">
-        <h1>Panel użytkownika</h1>
-        <h2>Witaj, {user.username}!</h2>
-        <p>ID: {user.id}</p>
-        <p>
-          Data utworzenia: {new Date(user.created_at).toLocaleDateString('pl-PL')}
-        </p>
-
-        <button onClick={handleLogout} disabled={loading}>
-          {loading ? 'Proszę czekać...' : 'Wyloguj się'}
-        </button>
-
-        {error && <p className="error">{error}</p>}
-      </div>
-    )
   }
 
   return (
@@ -165,10 +86,7 @@ export default function App() {
         maxLength={128}
       />
 
-      <button
-        onClick={page === 'register' ? handleRegister : handleLogin}
-        disabled={loading}
-      >
+      <button onClick={handleSubmit} disabled={loading}>
         {loading
           ? 'Proszę czekać...'
           : page === 'register'
@@ -193,5 +111,17 @@ export default function App() {
 
       {error && <p className="error">{error}</p>}
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/panel" element={<Panel />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
