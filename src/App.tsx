@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import './App.css'
+import Panel from './Panel';
 
 type User = {
   id: string
@@ -25,6 +26,7 @@ export default function App() {
   const [user, setUser] = useState<User | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
 
   async function request(
     url: string,
@@ -41,8 +43,10 @@ export default function App() {
     const data: ApiResponse = await response.json()
 
     if (!response.ok) {
-      throw new Error(data.error || 'Wystąpił błąd.')
+      throw new Error(data.error || 'Wystąpił błąd.');
     }
+
+    setLoggedIn(true);
 
     return data
   }
@@ -50,7 +54,10 @@ export default function App() {
   function getErrorMessage(err: unknown): string {
     return err instanceof Error ? err.message : 'Wystąpił nieznany błąd.'
   }
-
+  
+  if (loggedIn) {
+    return <Panel />;
+  }
   async function checkSession() {
     try {
       const data = await request('/api/me', 'GET')
