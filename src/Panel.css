@@ -1,62 +1,88 @@
-.MainPanel{
+.MainPanel {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
     width: 300px;
-    height: 400px;
-    
+    min-height: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-.MainPanel h1{
+
+.MainPanel h1 {
     font-size: 24px;
     color: #333;
-    margin-top: 20px;
+    margin: 10px 0 20px;
 }
-.MainPanel p{
+
+.MainPanel p {
     font-size: 16px;
     color: #666;
-    margin: 10px 20px;
+    margin: 10px 0;
+    line-height: 1.5;
 }
-.MainPanel button{
+
+.MainPanel button {
     background-color: #007BFF;
     color: white;
     border: none;
     padding: 10px 20px;
     margin-top: 20px;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
-.MainPanel button:hover{
+
+.MainPanel button:hover {
     background-color: #0056b3;
 }
-.Panel-lewy{
+
+.MainPanel button:focus-visible,
+.Panel-lewy button:focus-visible {
+    outline: 3px solid #80bdff;
+    outline-offset: 2px;
+}
+
+.Panel-lewy {
     background-color: #f9f9f9;
     border-right: 1px solid #ccc;
-    padding: 10px;
-    width: 200px;
-    height: 100%;
+    padding: 15px;
+    width: 230px;
+    min-height: 400px;
+    box-sizing: border-box;
     float: left;
 }
-.Panel-lewy h3{
+
+.Panel-lewy h3 {
     font-size: 18px;
     color: #333;
-    margin-bottom: 10px;
+    margin: 5px 0 15px;
 }
-.Panel-lewy ul{
-    list-style-type: none;
+
+.Panel-lewy ul {
+    list-style: none;
     padding: 0;
+    margin: 0;
 }
-.Panel-lewy li{
-    margin-bottom: 5px;
+
+.Panel-lewy li {
+    margin-bottom: 6px;
 }
-.Panel-lewy button{
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 5px 10px;
+
+.Panel-lewy button {
+    width: 100%;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid transparent;
+    padding: 10px;
     border-radius: 5px;
+    text-align: left;
     cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-.Panel-lewy button:hover{
-    background-color: #0056b3;
-}   
+
+.Panel-lewy button:hover {
+    background-color: #e3efff;
+    border-color: #c5dcfa;
+}
