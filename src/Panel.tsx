@@ -82,22 +82,23 @@ export default function Panel() {
                 Wyloguj się
             </button>
 
+            <div className="Panel-container">
+                <div className="Panel-lewy">
+                    <h3>Znajomi:</h3>
+                    <ul>
 
-            <div className="Panel-lewy">
-                <h3>Znajomi:</h3>
-                <ul>
-
-                    <li><button onClick={() => console.log('Kliknięto znajomego')}>Example</button></li>
-                    <li className="znajomi-item"><button onClick={() => console.log('Kliknięto znajomego')}>Example</button></li>
-                    <li className="znajomi-item"><button onClick={() => console.log('Kliknięto znajomego')}>Example</button></li>
-                </ul>
-            </div>
-            <div className="komunikator-panel">
-                <p className="wiadomosc">Wpisz wiadomość...</p>
-                <input type="text" placeholder="Wpisz wiadomość..." />
-                <button>Wyślij</button>
+                        <li><button onClick={() => console.log('Kliknięto znajomego')}>Example</button></li>
+                        <li className="znajomi-item"><button onClick={() => console.log('Kliknięto znajomego')}>Example</button></li>
+                        <li className="znajomi-item"><button onClick={() => console.log('Kliknięto znajomego')}>Example</button></li>
+                    </ul>
+                </div>
+                <div className="komunikator-panel">
+                    <p className="wiadomosc">Wpisz wiadomość...</p>
+                    <input type="text" placeholder="Wpisz wiadomość..." />
+                    <button>Wyślij</button>
 
 
+                </div>
             </div>
         </div>
 
