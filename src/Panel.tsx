@@ -71,10 +71,10 @@ export default function Panel() {
 
     return (
         <div className="MainPanel">
-            <h1>Panel użytkownika</h1>
-            <h2>Witaj, {user.username}!</h2>
-            <p>ID: {user.id}</p>
-            <p>
+           
+            <h2 styles={{ color: '#333' }}>Witaj, {user.username}!</h2>
+            <p styles={{ color: '#666' }}>ID: {user.id}</p>
+            <p styles={{ color: '#999' }}>
                 Data utworzenia: {new Date(user.created_at).toLocaleDateString('pl-PL')}
             </p>
 
@@ -88,9 +88,9 @@ export default function Panel() {
                     <h3>Znajomi</h3>
 
                     <ul>
-                        <li><button>Adam</button></li>
-                        <li><button>Kuba</button></li>
-                        <li><button>Michał</button></li>
+                        <li><button>Example</button></li>
+                        <li><button>Example</button></li>
+                        <li><button>Example</button></li>
                     </ul>
                 </aside>
 
