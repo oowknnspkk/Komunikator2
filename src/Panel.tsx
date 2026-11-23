@@ -72,9 +72,9 @@ export default function Panel() {
     return (
         <div className="MainPanel">
            
-            <h2 styles={{ color: '#333' }}>Witaj, {user.username}!</h2>
-            <p styles={{ color: '#666' }}>ID: {user.id}</p>
-            <p styles={{ color: '#999' }}>
+            <h2 style={{ color: '#333' }}>Witaj, {user.username}!</h2>
+            <p style={{ color: '#666' }}>ID: {user.id}</p>
+            <p style={{ color: '#999' }}>
                 Data utworzenia: {new Date(user.created_at).toLocaleDateString('pl-PL')}
             </p>
 
