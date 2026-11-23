@@ -7,3 +7,56 @@
     height: 400px;
     
 }
+.MainPanel h1{
+    font-size: 24px;
+    color: #333;
+    margin-top: 20px;
+}
+.MainPanel p{
+    font-size: 16px;
+    color: #666;
+    margin: 10px 20px;
+}
+.MainPanel button{
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.MainPanel button:hover{
+    background-color: #0056b3;
+}
+.Panel-lewy{
+    background-color: #f9f9f9;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    height: 100%;
+    float: left;
+}
+.Panel-lewy h3{
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+.Panel-lewy ul{
+    list-style-type: none;
+    padding: 0;
+}
+.Panel-lewy li{
+    margin-bottom: 5px;
+}
+.Panel-lewy button{
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.Panel-lewy button:hover{
+    background-color: #0056b3;
+}   
