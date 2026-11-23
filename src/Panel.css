@@ -1,64 +1,39 @@
-.MainPanel {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    text-align: center;
-    width: 300px;
-    min-height: 400px;
-    padding: 20px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
 
-.MainPanel h1 {
-    font-size: 24px;
-    color: #333;
-    margin: 10px 0 20px;
-}
-
-.MainPanel p {
-    font-size: 16px;
-    color: #666;
-    margin: 10px 0;
-    line-height: 1.5;
-}
-
-.MainPanel {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-left: none;
-    border-radius: 0 8px 8px 0;
-    text-align: center;
-    width: 600px;
-    min-height: 400px;
-    padding: 20px;
+* {
     box-sizing: border-box;
 }
 
-.MainPanel button:hover {
-    background-color: #0056b3;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #15161b;
+    font-family: Arial, sans-serif;
 }
 
-.MainPanel button:focus-visible,
-.Panel-lewy button:focus-visible {
-    outline: 3px solid #80bdff;
-    outline-offset: 2px;
+.Panel-container {
+    display: flex;
+    width: min(1100px, calc(100% - 40px));
+    height: min(700px, calc(100vh - 40px));
+    min-height: 500px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 1px solid #30333c;
+    border-radius: 10px;
+    background-color: #f0f0f0;
 }
 
 .Panel-lewy {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px 0 0 8px;
-    padding: 15px;
-    width: 230px;
-    min-height: 400px;
-    box-sizing: border-box;
+    flex: 0 0 250px;
+    background-color: #e5e9ef;
+    border-right: 1px solid #ccc;
+    padding: 20px 12px;
+    min-height: 0;
 }
 
 .Panel-lewy h3 {
-    font-size: 18px;
     color: #333;
-    margin: 5px 0 15px;
+    font-size: 20px;
+    margin: 5px 10px 25px;
 }
 
 .Panel-lewy ul {
@@ -68,22 +43,121 @@
 }
 
 .Panel-lewy li {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .Panel-lewy button {
     width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
     background-color: transparent;
     color: #333;
-    border: 1px solid transparent;
-    padding: 10px;
-    border-radius: 5px;
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s;
 }
 
 .Panel-lewy button:hover {
-    background-color: #e3efff;
-    border-color: #c5dcfa;
+    background-color: #cbdcf1;
+}
+
+.MainPanel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    width: auto;
+    height: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color: #f0f0f0;
+    text-align: left;
+}
+
+.Panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #ccc;
+}
+
+.Panel-header h1 {
+    margin: 0 0 8px;
+    font-size: 23px;
+    color: #333;
+}
+
+.Panel-header p {
+    margin: 0;
+    color: #666;
+}
+
+.Panel-header button,
+.Message-input button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.Panel-header button:hover,
+.Message-input button:hover {
+    background-color: #0056b3;
+}
+
+.Chat-area {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 15px;
+}
+
+.Messages {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.Message-input {
+    display: flex;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid #ccc;
+}
+
+.Message-input input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .Panel-container {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .Panel-lewy {
+        flex-basis: 110px;
+        padding: 12px 5px;
+    }
+
+    .Panel-lewy button {
+        padding: 8px 5px;
+        font-size: 12px;
+    }
+
+    .Panel-header {
+        padding: 15px;
+    }
 }
