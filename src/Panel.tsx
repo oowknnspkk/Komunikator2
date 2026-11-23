@@ -13,6 +13,7 @@ export default function Panel() {
     const navigate = useNavigate()
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
+    const [friends, setFriends] = useState<User[]>([])
 
     useEffect(() => {
         async function checkSession() {
@@ -69,6 +70,9 @@ export default function Panel() {
         return null
     }
 
+    // add a button to add a friend and a list of friends in the left panel
+    
+    
     return (
         <div className="MainPanel">
            
@@ -86,7 +90,7 @@ export default function Panel() {
 
                 <aside className="Panel-lewy">
                     <h3>Znajomi</h3>
-
+                    <button onClick={() => console.log('Dodaj znajomego')}>Dodaj znajomego</button>
                     <ul>
                         <li><button>Example</button></li>
                         <li><button>Example</button></li>
