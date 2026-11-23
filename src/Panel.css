@@ -11,14 +11,15 @@ body {
 
 .Panel-container {
     display: flex;
+    flex-direction: row;
+    gap: 12px;
     width: min(1100px, calc(100% - 40px));
     height: min(700px, calc(100vh - 40px));
     min-height: 500px;
     margin: 20px auto;
     overflow: hidden;
-    border: 1px solid #30333c;
-    border-radius: 10px;
-    background-color: #f0f0f0;
+    border-radius: 12px;
+    background-color: transparent;
 }
 
 .Panel-lewy {
@@ -69,11 +70,12 @@ body {
     min-height: 0;
     width: auto;
     height: 100%;
-    padding: 0;
-    border: none;
-    border-radius: 0;
+    padding: 20px;
+    border: 1px solid #353943;
+    border-radius: 12px;
     background-color: #f0f0f0;
     text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .Panel-header {
