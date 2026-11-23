@@ -70,7 +70,7 @@ export default function Panel() {
     }
 
     return (
-        <div className="MainApp">
+        <div className="MainPanel">
             <h1>Panel użytkownika</h1>
             <h2>Witaj, {user.username}!</h2>
             <p>ID: {user.id}</p>
