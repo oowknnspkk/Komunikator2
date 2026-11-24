@@ -63,7 +63,7 @@ export default function Panel() {
     }
 
     if (loading) {
-        return <div className="MainApp">Ładowanie panelu...</div>
+        return <div className="MainApp"> Chwila ładuje sie...</div>
     }
 
     if (!user) {
