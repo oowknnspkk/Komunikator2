@@ -77,9 +77,9 @@ export default function Panel() {
         <div className="MainPanel">
            
             <h2 style={{ color: '#333' }}>Witaj, {user.username}!</h2>
-            <p style={{ color: '#666' }}>ID: {user.id}</p>
+            <p style={{ color: '#666' }}>ID uzytkownika (nie wiem po co ale jest): {user.id}</p>
             <p style={{ color: '#999' }}>
-                Data utworzenia: {new Date(user.created_at).toLocaleDateString('pl-PL')}
+                Data utworzenia konta: {new Date(user.created_at).toLocaleDateString('pl-PL')}
             </p>
 
             <button onClick={handleLogout}>
