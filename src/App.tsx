@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import './App.css'
 import Panel from './Panel'
+import Settings from './Settings'
 
 type ApiResponse = {
   user?: {

@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import './Panel.css'
-import Settings from './Settings'
 type User = {
     id: string
     username: string
