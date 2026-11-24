@@ -118,12 +118,12 @@ function LoginPage() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/panel" element={<Panel />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
+<Routes>
+    <Route path="/" element={<LoginPage />} />
+    <Route path="/panel" element={<Panel />} />
+    <Route path="/settings" element={<Settings />} />
+    <Route path="*" element={<Navigate to="/" replace />} />
+</Routes>
     </BrowserRouter>
   )
 }
