@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './Panel.css';
+import './Panel.css'
 
 type User = {
     id: string
@@ -13,7 +13,6 @@ export default function Panel() {
     const navigate = useNavigate()
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
- 
 
     useEffect(() => {
         async function checkSession() {
@@ -63,37 +62,49 @@ export default function Panel() {
     }
 
     if (loading) {
-        return <div className="MainApp"> Chwila ładuje sie...</div>
+        return <div className="MainApp">Chwila, ładuje się...</div>
     }
 
     if (!user) {
         return null
     }
 
-    // add a button to add a friend and a list of friends in the left panel
-    
-    
     return (
         <div className="MainPanel">
-           
-            <h2 style={{ color: '#333' }}>Witaj, {user.username}!</h2>
-            <p style={{ color: '#666' }}>ID uzytkownika (nie wiem po co ale jest): {user.id}</p>
+
+            <h2 style={{ color: '#333' }}>
+                Witaj, {user.username}!
+            </h2>
+
+            <p style={{ color: '#666' }}>
+                ID użytkownika: {user.id}
+            </p>
+
             <p style={{ color: '#999' }}>
-                Data utworzenia konta: {new Date(user.created_at).toLocaleDateString('pl-PL')}
+                Data utworzenia konta: {
+                    new Date(user.created_at).toLocaleDateString('pl-PL')
+                }
             </p>
 
             <button onClick={handleLogout}>
                 Wyloguj się
             </button>
-<button onClick={() => Alert('Funkcja nie działa, przewidywany czas działania 30.11.2026')}}>
-    Ustawienia konta
-</button>
+
+            <button
+                onClick={() => alert('Funkcja nie działa, przewidywany czas działania 30.11.2026')}
+            >
+                Ustawienia konta
+            </button>
 
             <div className="Panel-container">
 
                 <aside className="Panel-lewy">
                     <h3>Znajomi</h3>
-                    <button onClick={() => console.log('Dodaj znajomego')}>Dodaj znajomego</button>
+
+                    <button onClick={() => console.log('Dodaj znajomego')}>
+                        Dodaj znajomego
+                    </button>
+
                     <ul>
                         <li><button>Example</button></li>
                         <li><button>Example</button></li>
@@ -106,7 +117,10 @@ export default function Panel() {
                     <header className="Panel-header">
                         <div>
                             <h1>Panel użytkownika</h1>
-                            <p style={{ color: '#b7b7a4'}}>Twoja nazwa uzytkownika: {user.username}</p>
+
+                            <p style={{ color: '#b7b7a4' }}>
+                                Twoja nazwa użytkownika: {user.username}
+                            </p>
                         </div>
 
                         <button onClick={handleLogout}>
@@ -116,7 +130,7 @@ export default function Panel() {
 
                     <section className="Chat-area">
                         <div className="Messages">
-                           
+                            {/* Tutaj będą wiadomości */}
                         </div>
 
                         <div className="Message-input">
@@ -129,7 +143,5 @@ export default function Panel() {
 
             </div>
         </div>
-
-
     )
 }
