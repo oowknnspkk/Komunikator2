@@ -88,11 +88,8 @@ export default function Panel() {
 
           
 
-            <button
-                onClick={() => alert('Funkcja nie działa, przewidywany czas działania 30.11.2026')}
-            >
-                Ustawienia konta
-            </button>
+            <button><a href="Settings.tsx">Ustawienia konta</a></button>
+            
 
             <div className="Panel-container">
 
