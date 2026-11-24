@@ -86,9 +86,7 @@ export default function Panel() {
                 }
             </p>
 
-            <button onClick={handleLogout}>
-                Wyloguj się
-            </button>
+          
 
             <button
                 onClick={() => alert('Funkcja nie działa, przewidywany czas działania 30.11.2026')}
