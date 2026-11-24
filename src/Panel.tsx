@@ -103,7 +103,7 @@ export default function Panel() {
                     <header className="Panel-header">
                         <div>
                             <h1>Panel użytkownika</h1>
-                            <p>Witaj, {user.username}!</p>
+                            <p style={{ color: '#b7b7a4'}}>Twoja nazwa uzytkownika: {user.username}!</p>
                         </div>
 
                         <button onClick={handleLogout}>
