@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Panel.css'
-
+import Settings from './Settings'
 type User = {
     id: string
     username: string
@@ -88,7 +88,7 @@ export default function Panel() {
 
           
 
-            <button><a href="Settings.tsx">Ustawienia konta</a></button>
+             <Link to="/settings">Ustawienia konta</Link>
             
 
             <div className="Panel-container">

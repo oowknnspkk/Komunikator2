@@ -121,6 +121,7 @@ export default function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/panel" element={<Panel />} />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   )
