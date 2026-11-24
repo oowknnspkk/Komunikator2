@@ -104,7 +104,7 @@ export default function Panel() {
                     </button>
 
                     <ul>
-                        <li><button>Example</button></li>
+                        
                         <li><button>Example</button></li>
                         <li><button>Example</button></li>
                     </ul>
