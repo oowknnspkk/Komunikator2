@@ -85,6 +85,9 @@ export default function Panel() {
             <button onClick={handleLogout}>
                 Wyloguj się
             </button>
+             <button onClick={() => Alert('Funkcja nie działa, przewidywany czas działania 30.11.2026')}}>
+                Ustawienia konta
+            </button>
 
             <div className="Panel-container">
 
@@ -103,7 +106,7 @@ export default function Panel() {
                     <header className="Panel-header">
                         <div>
                             <h1>Panel użytkownika</h1>
-                            <p style={{ color: '#b7b7a4'}}>Twoja nazwa uzytkownika: {user.username}!</p>
+                            <p style={{ color: '#b7b7a4'}}>Twoja nazwa uzytkownika: {user.username}</p>
                         </div>
 
                         <button onClick={handleLogout}>
@@ -113,7 +116,7 @@ export default function Panel() {
 
                     <section className="Chat-area">
                         <div className="Messages">
-                            {/* Tutaj będą wiadomości */}
+                           
                         </div>
 
                         <div className="Message-input">
