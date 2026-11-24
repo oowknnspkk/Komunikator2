@@ -13,7 +13,7 @@ export default function Panel() {
     const navigate = useNavigate()
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
-    const [friends, setFriends] = useState<User[]>([])
+ 
 
     useEffect(() => {
         async function checkSession() {
