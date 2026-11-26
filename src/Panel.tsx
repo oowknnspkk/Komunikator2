@@ -1,7 +1,7 @@
-
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Panel.css'
+
 type User = {
     id: string
     username: string
@@ -15,7 +15,6 @@ export default function Panel() {
 
     const [friends, setFriends] = useState<User[]>([])
     console.log(friends, setFriends)
-
 
     useEffect(() => {
         async function checkSession() {
@@ -72,7 +71,6 @@ export default function Panel() {
         return null
     }
 
-
     return (
         <div className="MainPanel">
 
@@ -90,10 +88,7 @@ export default function Panel() {
                 }
             </p>
 
-          
-
-             <Link to="/settings">Ustawienia konta</Link>
-            
+            <Link to="/settings">Ustawienia konta</Link>
 
             <div className="Panel-container">
 
@@ -105,7 +100,6 @@ export default function Panel() {
                     </button>
 
                     <ul>
-                        
                         <li><button>Example</button></li>
                         <li><button>Example</button></li>
                     </ul>
@@ -137,6 +131,7 @@ export default function Panel() {
                             <button>Wyślij</button>
                         </div>
                     </section>
+                    
 
                 </main>
 
