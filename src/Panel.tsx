@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Panel.css'
+import Chat from './Chat'
 
 type User = {
   id: string
@@ -125,6 +126,8 @@ export default function Panel() {
           </div>
 
           {logoutError && <p className="form-message panel-error" role="alert">{logoutError}</p>}
+
+          <Chat />
 
           <footer className="account-footer">
             <span>ID: {user.id}</span>
