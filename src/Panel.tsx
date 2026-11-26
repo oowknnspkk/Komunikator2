@@ -72,12 +72,7 @@ export default function Panel() {
         return null
     }
 
-<<<<<<< HEAD
-    // add a button to add a friend and a list of friends in the left panel
 
-    
-=======
->>>>>>> 7efe68baacef8d52f99fba9e63a1ffa6ac17efa3
     return (
         <div className="MainPanel">
 
