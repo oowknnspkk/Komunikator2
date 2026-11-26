@@ -1,4 +1,4 @@
-
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { createClient } from '@supabase/supabase-js'
 import jwt from 'jsonwebtoken'
 
@@ -7,7 +7,10 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
@@ -19,7 +22,18 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Brak sesji.' })
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    const jwtSecret = process.env.JWT_SECRET
+
+    if (!jwtSecret) {
+      console.error('Brak zmiennej środowiskowej JWT_SECRET')
+      return res.status(500).json({ error: 'Błąd konfiguracji serwera.' })
+    }
+
+    const decoded = jwt.verify(token, jwtSecret)
+
+    if (typeof decoded === 'string' || typeof decoded.sub !== 'string') {
+      return res.status(401).json({ error: 'Nieprawidłowa sesja.' })
+    }
 
     const username = String(req.query.username || '').trim().toLowerCase()
 
