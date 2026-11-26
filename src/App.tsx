@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import './App.css'
 import Panel from './Panel'
+import Settings from './Settings'
 
 type ApiResponse = {
   user?: {
@@ -117,11 +118,12 @@ function LoginPage() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/panel" element={<Panel />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+<Routes>
+    <Route path="/" element={<LoginPage />} />
+    <Route path="/panel" element={<Panel />} />
+    <Route path="/settings" element={<Settings />} />
+    <Route path="*" element={<Navigate to="/" replace />} />
+</Routes>
     </BrowserRouter>
   )
 }
