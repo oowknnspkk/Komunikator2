@@ -21,6 +21,7 @@ export default function Settings() {
       <button onClick={toggleTheme}>
         {theme === 'light' ? 'Ciemny motyw' : 'Jasny motyw'}
       </button>
+      
     </div>
   )
 }
