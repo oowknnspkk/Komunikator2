@@ -12,11 +12,10 @@ export default function Panel() {
     const navigate = useNavigate()
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
-<<<<<<< HEAD
+
     const [friends, setFriends] = useState<User[]>([])
     console.log(friends, setFriends)
-=======
->>>>>>> 7efe68baacef8d52f99fba9e63a1ffa6ac17efa3
+
 
     useEffect(() => {
         async function checkSession() {
