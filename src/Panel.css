@@ -142,89 +142,85 @@ body {
 
 .panel-page {
   min-height: 100vh;
-  padding: 28px;
+  padding: 24px;
 }
 
 .panel-shell {
   display: flex;
-  width: min(1200px, 100%);
-  min-height: min(780px, calc(100vh - 56px));
+  width: min(1150px, 100%);
+  min-height: min(740px, calc(100vh - 48px));
   margin: 0 auto;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 20px;
   background: var(--surface);
   box-shadow: var(--shadow);
 }
 
 .panel-sidebar {
   display: flex;
-  flex: 0 0 270px;
+  flex: 0 0 250px;
   flex-direction: column;
-  padding: 24px 18px;
+  padding: 22px 16px;
   border-right: 1px solid var(--border);
-  background: var(--surface);
+  background: var(--surface-muted);
 }
 
 .app-brand {
   display: flex;
   align-items: center;
-  gap: 11px;
-  margin-bottom: 42px;
+  gap: 10px;
+  margin-bottom: 36px;
   color: var(--text);
-  font-size: 17px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
   text-decoration: none;
 }
 
 .brand-mark-small {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   margin: 0;
-  border-radius: 11px;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .sidebar-section {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .sidebar-label {
   margin: 0;
   color: var(--text-muted);
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .user-card {
   display: flex;
   align-items: center;
-  gap: 11px;
-  margin-top: 14px;
-  padding: 12px;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface-muted);
+  background: var(--surface);
 }
 
 .user-avatar,
 .chat-empty-icon {
   display: grid;
   flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   place-items: center;
-  border-radius: 12px;
   background: var(--accent-soft);
   color: var(--accent);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .user-details {
   display: grid;
   min-width: 0;
-  gap: 4px;
+  gap: 2px;
 }
 
 .user-details strong {
@@ -248,9 +244,7 @@ body {
   width: 28px;
   height: 28px;
   border: 1px solid var(--border);
-  border-radius: 8px;
   background: var(--surface);
-  color: var(--text-muted);
 }
 
 .icon-button:disabled {
@@ -259,20 +253,20 @@ body {
 }
 
 .empty-state {
-  margin-top: 14px;
-  line-height: 1.6;
+  margin-top: 12px;
+  line-height: 1.5;
 }
 
 .sidebar-settings {
   margin-top: auto;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 9px 10px;
   color: var(--text);
   text-decoration: none;
 }
 
 .sidebar-settings:hover {
-  background: var(--surface-muted);
+  background: var(--surface);
+  text-decoration: underline;
 }
 
 .chat-panel {
@@ -280,7 +274,7 @@ body {
   flex: 1;
   flex-direction: column;
   min-width: 0;
-  padding: 30px;
+  padding: 26px;
 }
 
 .chat-header {
@@ -288,18 +282,18 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding-bottom: 22px;
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--border);
 }
 
 .chat-header .eyebrow {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .chat-header h1 {
   margin: 0;
-  font-size: clamp(21px, 3vw, 28px);
-  letter-spacing: -0.03em;
+  font-size: 23px;
+  font-weight: 600;
 }
 
 .chat-empty {
@@ -308,35 +302,34 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 18px;
+  padding: 32px 18px;
   text-align: center;
 }
 
 .chat-empty-icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
-  font-size: 27px;
+  width: 46px;
+  height: 46px;
+  font-size: 22px;
 }
 
 .chat-empty h2 {
-  margin: 20px 0 8px;
-  font-size: 20px;
+  margin: 16px 0 6px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .chat-empty p {
   max-width: 360px;
   margin: 0;
   color: var(--text-muted);
-  line-height: 1.6;
 }
 
 .account-footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 8px 20px;
-  padding-top: 16px;
+  gap: 8px 18px;
+  padding-top: 14px;
   border-top: 1px solid var(--border);
   color: var(--text-muted);
   font-size: 12px;
@@ -351,7 +344,7 @@ body {
 }
 
 .panel-error {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
 }
 
 @media (max-width: 600px) {
@@ -379,24 +372,24 @@ body {
 
 @media (max-width: 700px) {
   .panel-page {
-    padding: 12px;
+    padding: 0;
   }
 
   .panel-shell {
-    min-height: calc(100vh - 24px);
+    min-height: 100vh;
     flex-direction: column;
-    border-radius: 15px;
+    border: 0;
   }
 
   .panel-sidebar {
     flex: auto;
-    padding: 16px;
+    padding: 15px;
     border-right: 0;
     border-bottom: 1px solid var(--border);
   }
 
   .app-brand {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .sidebar-section {
@@ -408,12 +401,12 @@ body {
   }
 
   .sidebar-settings {
-    margin-top: 8px;
+    margin-top: 6px;
   }
 
   .chat-panel {
     min-height: 420px;
-    padding: 20px 16px;
+    padding: 18px 15px;
   }
 
   .chat-header {
