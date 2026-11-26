@@ -1,141 +1,140 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Panel.css'
 
 type User = {
-    id: string
-    username: string
-    created_at: string
+  id: string
+  username: string
+  created_at: string
 }
 
 export default function Panel() {
-    const navigate = useNavigate()
-    const [user, setUser] = useState<User | null>(null)
-    const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [logoutError, setLogoutError] = useState('')
 
-    const [friends, setFriends] = useState<User[]>([])
-    console.log(friends, setFriends)
+  useEffect(() => {
+    async function checkSession() {
+      try {
+        const response = await fetch('/api/me', {
+          credentials: 'same-origin',
+        })
 
-    useEffect(() => {
-        async function checkSession() {
-            try {
-                const response = await fetch('/api/me', {
-                    method: 'GET',
-                    credentials: 'same-origin'
-                })
-
-                if (!response.ok) {
-                    navigate('/', { replace: true })
-                    return
-                }
-
-                const data = await response.json()
-
-                if (data.user) {
-                    setUser(data.user)
-                } else {
-                    navigate('/', { replace: true })
-                }
-            } catch {
-                navigate('/', { replace: true })
-            } finally {
-                setLoading(false)
-            }
+        if (!response.ok) {
+          navigate('/', { replace: true })
+          return
         }
 
-        checkSession()
-    }, [navigate])
+        const data: { user?: User } = await response.json()
 
-    async function handleLogout() {
-        try {
-            const response = await fetch('/api/logout', {
-                method: 'POST',
-                credentials: 'same-origin'
-            })
-
-            if (!response.ok) {
-                throw new Error('Nie udało się wylogować.')
-            }
-
-            navigate('/', { replace: true })
-        } catch (error) {
-            console.error(error)
+        if (data.user) {
+          setUser(data.user)
+        } else {
+          navigate('/', { replace: true })
         }
+      } catch {
+        navigate('/', { replace: true })
+      } finally {
+        setLoading(false)
+      }
     }
 
-    if (loading) {
-        return <div className="MainApp">Chwila, ładuje się...</div>
+    void checkSession()
+  }, [navigate])
+
+  async function handleLogout() {
+    setLogoutError('')
+
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'same-origin',
+      })
+
+      if (!response.ok) {
+        throw new Error('Nie udało się wylogować.')
+      }
+
+      navigate('/', { replace: true })
+    } catch {
+      setLogoutError('Wylogowanie się nie powiodło. Spróbuj ponownie.')
     }
+  }
 
-    if (!user) {
-        return null
-    }
+  if (loading) {
+    return <main className="panel-loading">Ładowanie panelu…</main>
+  }
 
-    return (
-        <div className="MainPanel">
+  if (!user) return null
 
-            <h2 style={{ color: '#333' }}>
-                Witaj, {user.username}!
-            </h2>
+  return (
+    <main className="panel-page">
+      <div className="panel-shell">
+        <aside className="panel-sidebar">
+          <Link className="app-brand" to="/panel">
+            <span className="brand-mark brand-mark-small">K</span>
+            <span>Komunikator</span>
+          </Link>
 
-            <p style={{ color: '#666' }}>
-                ID użytkownika: {user.id}
-            </p>
-
-            <p style={{ color: '#999' }}>
-                Data utworzenia konta: {
-                    new Date(user.created_at).toLocaleDateString('pl-PL')
-                }
-            </p>
-
-            <Link to="/settings">Ustawienia konta</Link>
-
-            <div className="Panel-container">
-
-                <aside className="Panel-lewy">
-                    <h3>Znajomi</h3>
-
-                    <button onClick={() => console.log('Dodaj znajomego')}>
-                        Dodaj znajomego
-                    </button>
-
-                    <ul>
-                        <li><button>Example</button></li>
-                        <li><button>Example</button></li>
-                    </ul>
-                </aside>
-
-                <main className="MainPanel">
-
-                    <header className="Panel-header">
-                        <div>
-                            <h1>Panel użytkownika</h1>
-
-                            <p style={{ color: '#b7b7a4' }}>
-                                Twoja nazwa użytkownika: {user.username}
-                            </p>
-                        </div>
-
-                        <button onClick={handleLogout}>
-                            Wyloguj się
-                        </button>
-                    </header>
-
-                    <section className="Chat-area">
-                        <div className="Messages">
-                            {/* Tutaj będą wiadomości */}
-                        </div>
-
-                        <div className="Message-input">
-                            <input placeholder="Wpisz wiadomość..." />
-                            <button>Wyślij</button>
-                        </div>
-                    </section>
-                    
-
-                </main>
-
+          <div className="sidebar-section">
+            <p className="sidebar-label">KONTO</p>
+            <div className="user-card">
+              <div className="user-avatar">{user.username.slice(0, 1).toUpperCase()}</div>
+              <div className="user-details">
+                <strong>{user.username}</strong>
+                <span>Aktywne konto</span>
+              </div>
             </div>
-        </div>
-    )
+          </div>
+
+          <div className="sidebar-section friends-section">
+            <div className="section-heading">
+              <p className="sidebar-label">ZNAJOMI</p>
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Dodawanie znajomych nie jest jeszcze dostępne"
+                title="Ta funkcja nie jest jeszcze dostępna"
+                disabled
+              >
+                +
+              </button>
+            </div>
+            <p className="empty-state">Lista znajomych będzie dostępna tutaj.</p>
+          </div>
+
+          <Link className="sidebar-settings" to="/settings">Ustawienia</Link>
+        </aside>
+
+        <section className="chat-panel">
+          <header className="chat-header">
+            <div>
+              <p className="eyebrow">TWOJE KONTO</p>
+              <h1>Witaj, {user.username}</h1>
+            </div>
+            <button className="button button-secondary" type="button" onClick={handleLogout}>
+              Wyloguj się
+            </button>
+          </header>
+
+          <div className="chat-empty">
+            <div className="chat-empty-icon" aria-hidden="true">✦</div>
+            <h2>Twoje rozmowy</h2>
+            <p>Gdy funkcja czatu będzie gotowa, rozmowy pojawią się w tym miejscu.</p>
+          </div>
+
+          {logoutError && <p className="form-message panel-error" role="alert">{logoutError}</p>}
+
+          <footer className="account-footer">
+            <span>ID: {user.id}</span>
+            <span>
+              Konto utworzono:{' '}
+              {new Date(user.created_at).toLocaleDateString('pl-PL')}
+            </span>
+          </footer>
+        </section>
+      </div>
+    </main>
+  )
 }

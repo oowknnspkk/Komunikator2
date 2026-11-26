@@ -1,27 +1,45 @@
-import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useTheme } from './ThemeContext'
 
 export default function Settings() {
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') ?? 'light'
-  )
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
-
-  function toggleTheme() {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
+  const { theme, setTheme } = useTheme()
 
   return (
-    <div>
-      <h1>Ustawienia konta</h1>
-      <p>Tutaj będą ustawienia użytkownika.</p>
-      <button onClick={toggleTheme}>
-        {theme === 'light' ? 'Ciemny motyw' : 'Jasny motyw'}
-      </button>
-      
-    </div>
+    <main className="settings-page">
+      <section className="settings-card">
+        <Link className="back-link" to="/panel">← Wróć do panelu</Link>
+        <p className="eyebrow">PREFERENCJE</p>
+        <h1>Ustawienia</h1>
+        <p className="settings-description">
+          Dostosuj wygląd komunikatora do swoich preferencji.
+        </p>
+
+        <section className="setting-row" aria-labelledby="theme-heading">
+          <div>
+            <h2 id="theme-heading">Motyw aplikacji</h2>
+            <p>Wybierz jasny lub ciemny wygląd.</p>
+          </div>
+
+          <div className="theme-options" role="group" aria-label="Wybór motywu">
+            <button
+              className={`button ${theme === 'light' ? 'button-selected' : 'button-secondary'}`}
+              type="button"
+              aria-pressed={theme === 'light'}
+              onClick={() => setTheme('light')}
+            >
+              Jasny
+            </button>
+            <button
+              className={`button ${theme === 'dark' ? 'button-selected' : 'button-secondary'}`}
+              type="button"
+              aria-pressed={theme === 'dark'}
+              onClick={() => setTheme('dark')}
+            >
+              Ciemny
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
   )
 }
