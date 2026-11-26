@@ -63,7 +63,7 @@ export default function Panel() {
   }
 
   if (loading) {
-    return <main className="panel-loading">Ładowanie panelu…</main>
+    return <main className="panel-loading">Ładowanie chwile moze potrwac</main>
   }
 
   if (!user) return null
@@ -74,7 +74,7 @@ export default function Panel() {
         <aside className="panel-sidebar">
           <Link className="app-brand" to="/panel">
             <span className="brand-mark brand-mark-small">K</span>
-            <span>Komunikator</span>
+            <span>Komunikator bez nazwy</span>
           </Link>
 
           <div className="sidebar-section">
@@ -83,7 +83,7 @@ export default function Panel() {
               <div className="user-avatar">{user.username.slice(0, 1).toUpperCase()}</div>
               <div className="user-details">
                 <strong>{user.username}</strong>
-                <span>Aktywne konto</span>
+                
               </div>
             </div>
           </div>
