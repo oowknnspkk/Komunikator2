@@ -14,6 +14,7 @@ export default function Panel() {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
     const [friends, setFriends] = useState<User[]>([])
+    console.log(friends, setFriends)
 
     useEffect(() => {
         async function checkSession() {
@@ -71,7 +72,7 @@ export default function Panel() {
     }
 
     // add a button to add a friend and a list of friends in the left panel
-    
+
     
     return (
         <div className="MainPanel">
