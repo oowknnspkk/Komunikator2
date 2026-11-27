@@ -5,6 +5,14 @@
   place-items: center;
   padding: 24px;
 }
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  min-height: 100vh;
+  padding: 24px;
+}
 
 .auth-card,
 .settings-card {
@@ -186,4 +194,52 @@
 .advertisement1{
   float: right;
   background-color: greenyellow;
+}
+
+.ads {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Wspólne style reklam */
+.advertisement1,
+.advertisement2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 320px;
+  padding: 12px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+
+.advertisement1 {
+  background: greenyellow;
+  color: #222;
+}
+
+
+.advertisement2 {
+  background: var(--surface-muted);
+}
+
+
+@media (max-width: 1000px) {
+  .ads {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .auth-page {
+    padding: 16px;
+  }
 }
