@@ -115,7 +115,7 @@ function LoginPage() {
 
     <div className="advertisement3">
 
-  <img src="casino.jpg" alt="niesamowite kasyno online" />
+  <img src={reklama3} alt="niesamowite kasyno online" />
     </div>
   </div>
 
