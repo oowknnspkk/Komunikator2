@@ -8,7 +8,7 @@ import {
   Routes,
   useNavigate,
 } from 'react-router-dom'
-
+import Reklama from './assets/F3MEGC.gif'
 import './App.css'
 import Panel from './Panel'
 import Settings from './Settings'
@@ -101,11 +101,11 @@ function LoginPage() {
     <main className="auth-page">
       <div className="ads">
         <div className="advertisement1">
-          {/* Pierwsza reklama */}
+          <img src="{reklama}" alt="reklama" />
         </div>
 
         <div className="advertisement2">
-          {/* Druga reklama */}
+          
         </div>
       </div>
 
