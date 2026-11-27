@@ -9,6 +9,7 @@ import {
   useNavigate,
 } from 'react-router-dom'
 import Reklama from './assets/F3MEGC.gif'
+import reklama2 from './assets/reklama 2.jpg'
 import './App.css'
 import Panel from './Panel'
 import Settings from './Settings'
@@ -105,7 +106,7 @@ function LoginPage() {
         </div>
 
         <div className="advertisement2">
-          
+          <img src={reklama2} alt="Reklama" />
         </div>
       </div>
 
