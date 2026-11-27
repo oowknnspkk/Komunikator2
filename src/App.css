@@ -1,4 +1,3 @@
-
 .auth-page,
 .settings-page {
   display: flex;
@@ -16,8 +15,15 @@
 
 /* REKLAMY */
 
+.ads {
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
 .advertisement1,
-.advertisement2 {
+.advertisement2,
+.advertisement3 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,6 +35,7 @@
   border-radius: 8px;
   font-size: 13px;
   text-align: center;
+  overflow: hidden;
 }
 
 .advertisement1 {
@@ -36,9 +43,25 @@
   color: #222;
 }
 
-.advertisement2 {
+.advertisement2,
+.advertisement3 {
   background: var(--surface-muted);
   color: var(--text-muted);
+}
+
+.advertisement1 a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.advertisement1 img,
+.advertisement2 img,
+.advertisement3 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* KARTY */
@@ -233,11 +256,16 @@
 
 /* RESPONSYWNOŚĆ */
 
-@media (max-width: 1050px) {
+@media (max-width: 1250px) {
   .advertisement1,
-  .advertisement2 {
+  .advertisement2,
+  .advertisement3 {
     width: 130px;
     height: 280px;
+  }
+
+  .ads {
+    gap: 10px;
   }
 
   .auth-page {
@@ -245,9 +273,8 @@
   }
 }
 
-@media (max-width: 760px) {
-  .advertisement1,
-  .advertisement2 {
+@media (max-width: 900px) {
+  .ads {
     display: none;
   }
 
@@ -267,31 +294,4 @@
     align-items: flex-start;
     flex-direction: column;
   }
-}
-img{
-  width: 180px;
-  height: 320px;
-}
-.advertisement3 {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  background: var(--surface-muted);
-  color: var(--text-muted);
-  border-top: 1px dashed var(--border);
-  font-size: 13px;
-  text-align: center;
-  z-index: 10;
-  padding: 0;
-}
-.advertisement3 img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
