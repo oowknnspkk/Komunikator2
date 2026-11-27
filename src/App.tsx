@@ -73,9 +73,18 @@ function LoginPage() {
 
   return (
     <main className="auth-page">
+      <div className="advertisment1">
+      <img src="" alt="" />
+
+      </div>
+
+      <div className="advertisment2">
+        <img src="" alt="" />
+        
+      </div>
       <section className="auth-card">
         <div className="brand-mark" aria-hidden="true">K</div>
-        <p className="eyebrow">KOMUNIKATOR</p>
+        <p className="eyebrow">Komunikator bez nazwy</p>
         <h1>{isRegister ? 'Utwórz konto' : 'Witaj ponownie'}</h1>
         <p className="auth-description">
           {isRegister ? 'Dołącz do rozmowy.' : 'Zaloguj się, aby kontynuować.'}

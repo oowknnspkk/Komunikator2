@@ -183,3 +183,7 @@
     flex-direction: column;
   }
 }
+.advertisment1{
+  float: right;
+  background-color: greenyellow;
+}
