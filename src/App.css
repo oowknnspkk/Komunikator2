@@ -256,24 +256,8 @@
 
 /* RESPONSYWNOŚĆ */
 
-@media (max-width: 1250px) {
-  .advertisement1,
-  .advertisement2,
-  .advertisement3 {
-    width: 130px;
-    height: 280px;
-  }
-
-  .ads {
-    gap: 10px;
-  }
-
-  .auth-page {
-    gap: 16px;
-  }
-}
-
-@media (max-width: 900px) {
+/* Za wąsko na 3 reklamy + kartę: ukrywamy reklamy zamiast je zmniejszać */
+@media (max-width: 1150px) {
   .ads {
     display: none;
   }
