@@ -136,7 +136,7 @@ function LoginPage() {
             id="username"
             type="text"
             autoComplete="username"
-            placeholder="np. user_123"
+            placeholder="np. cwel_123"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             minLength={3}
