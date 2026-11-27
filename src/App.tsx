@@ -8,6 +8,7 @@ import {
   Routes,
   useNavigate,
 } from 'react-router-dom'
+
 import Reklama from './assets/F3MEGC.gif'
 import reklama2 from './assets/reklama 2.jpg'
 import './App.css'
@@ -101,14 +102,21 @@ function LoginPage() {
   return (
     <main className="auth-page">
       <div className="ads">
-        <div className="advertisement1">
-          <a href="https://samequizy.pl/powieksz-swojego-piekielnika/"><img src={Reklama} alt="Reklama" /></a>
-        </div>
+    <div className="advertisement1">
+      <a href="https://samequizy.pl/powieksz-swojego-piekielnika/">
+        <img src={Reklama} alt="Reklama" />
+      </a>
+    </div>
 
-        <div className="advertisement2">
-          <img src={reklama2} alt="Reklama" />
-        </div>
-      </div>
+    <div className="advertisement2">
+      <img src={reklama2} alt="Reklama" />
+    </div>
+
+    <div className="advertisement3">
+
+  
+    </div>
+  </div>
 
       <section className="auth-card">
         <div className="brand-mark" aria-hidden="true">

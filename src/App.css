@@ -272,3 +272,26 @@ img{
   width: 180px;
   height: 320px;
 }
+.advertisement3 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border);
+  font-size: 13px;
+  text-align: center;
+  z-index: 10;
+}
+.advertisement3 img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
