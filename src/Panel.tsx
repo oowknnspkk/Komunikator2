@@ -92,17 +92,8 @@ export default function Panel() {
           <div className="sidebar-section friends-section">
             <div className="section-heading">
               <p className="sidebar-label">ZNAJOMI</p>
-              <button
-                className="icon-button"
-                type="button"
-                aria-label="Dodawanie znajomych nie jest jeszcze dostępne"
-                title="Ta funkcja nie jest jeszcze dostępna"
-                disabled
-              >
-                +
-              </button>
             </div>
-            <p className="empty-state">Lista znajomych będzie dostępna tutaj.</p>
+            <p className="empty-state">Wybierz znajomego w oknie czatu.</p>
           </div>
 
           <Link className="sidebar-settings" to="/settings">Ustawienia</Link>
@@ -119,15 +110,9 @@ export default function Panel() {
             </button>
           </header>
 
-          <div className="chat-empty">
-            <div className="chat-empty-icon" aria-hidden="true">✦</div>
-            <h2>Twoje rozmowy</h2>
-            <p>Gdy funkcja czatu będzie gotowa, rozmowy pojawią się w tym miejscu.</p>
-          </div>
+          <Chat />
 
           {logoutError && <p className="form-message panel-error" role="alert">{logoutError}</p>}
-
-          <Chat />
 
           <footer className="account-footer">
             <span>ID: {user.id}</span>

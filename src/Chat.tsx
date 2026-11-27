@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import type { FormEvent } from 'react'
 
 type Friend = {
@@ -19,7 +19,11 @@ export default function Chat() {
   const [friendId, setFriendId] = useState('')
   const [messages, setMessages] = useState<Message[]>([])
   const [content, setContent] = useState('')
+  const [friendUsername, setFriendUsername] = useState('')
   const [error, setError] = useState('')
+  const [isSending, setIsSending] = useState(false)
+  const [addingFriend, setAddingFriend] = useState(false)
+  const endOfMessagesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     async function loadFriends() {
@@ -81,9 +85,17 @@ export default function Chat() {
     }
   }, [friendId])
 
+  useEffect(() => {
+    if (endOfMessagesRef.current) {
+      endOfMessagesRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages])
+
   async function sendMessage(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!friendId || !content.trim()) return
+    if (!friendId || !content.trim() || isSending) return
+
+    setIsSending(true)
 
     try {
       const response = await fetch('/api/messages', {
@@ -101,6 +113,55 @@ export default function Chat() {
       setError('')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Błąd wysyłania wiadomości.')
+    } finally {
+      setIsSending(false)
+    }
+  }
+
+  async function addFriend(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const username = friendUsername.trim()
+    if (!username || addingFriend) return
+
+    setAddingFriend(true)
+
+    try {
+      const searchResponse = await fetch(
+        `/api/search-user?username=${encodeURIComponent(username)}`,
+        { credentials: 'same-origin' },
+      )
+      const searchData = await searchResponse.json()
+
+      if (!searchResponse.ok) {
+        throw new Error(searchData.error || 'Nie udało się znaleźć użytkownika.')
+      }
+
+      const friend: Friend = searchData.user
+
+      const addResponse = await fetch('/api/add-friend', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ friendId: friend.id }),
+      })
+      const addData = await addResponse.json()
+
+      if (!addResponse.ok) {
+        throw new Error(addData.error || 'Nie udało się dodać znajomego.')
+      }
+
+      setFriends(current =>
+        current.some(item => item.id === friend.id)
+          ? current
+          : [...current, friend].sort((a, b) => a.username.localeCompare(b.username)),
+      )
+      setFriendId(friend.id)
+      setFriendUsername('')
+      setError('')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Błąd dodawania znajomego.')
+    } finally {
+      setAddingFriend(false)
     }
   }
 
@@ -139,6 +200,7 @@ export default function Chat() {
               })}</time>
             </div>
           ))}
+          <div ref={endOfMessagesRef} />
         </div>
 
         {error && <p className="form-message" role="alert">{error}</p>}
@@ -151,8 +213,20 @@ export default function Chat() {
             maxLength={4000}
             disabled={!friendId}
           />
-          <button className="button button-primary" disabled={!friendId || !content.trim()}>
-            Wyślij
+          <button className="button button-primary" disabled={!friendId || !content.trim() || isSending}>
+            {isSending ? 'Wysyłanie...' : 'Wyślij'}
+          </button>
+        </form>
+
+        <form className="add-friend-form" onSubmit={addFriend}>
+          <input
+            value={friendUsername}
+            onChange={event => setFriendUsername(event.target.value)}
+            placeholder="Dodaj znajomego po nazwie użytkownika"
+            maxLength={100}
+          />
+          <button className="button button-secondary" disabled={addingFriend}>
+            {addingFriend ? 'Dodawanie...' : 'Dodaj znajomego'}
           </button>
         </form>
       </div>
