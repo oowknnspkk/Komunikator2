@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 30px;
   min-height: 100vh;
   padding: 24px;
 }
@@ -222,16 +222,19 @@
 
 
 .advertisement1 {
+  width: 180px;
+  height: 320px;
   background: greenyellow;
-  float: left;
-  color: #222;
+  order: 1;
 }
 
 
 .advertisement2 {
-  background: var(--surface-muted);
+  width: 180px;
+  height: 320px;
+  background: lightblue;
+  order: 3;
 }
-
 
 @media (max-width: 1000px) {
   .ads {
@@ -243,4 +246,7 @@
   .auth-page {
     padding: 16px;
   }
+}
+.ads {
+  display: contents;
 }
