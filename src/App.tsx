@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import {
@@ -7,6 +8,7 @@ import {
   Routes,
   useNavigate,
 } from 'react-router-dom'
+
 import './App.css'
 import Panel from './Panel'
 import Settings from './Settings'
@@ -23,125 +25,184 @@ type ApiResponse = {
 
 function LoginPage() {
   const navigate = useNavigate()
+
   const [page, setPage] = useState<'register' | 'login'>('login')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const isRegister = page === 'register'
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
+    if (loading) return
+
     setError('')
+    setSuccess('')
     setLoading(true)
 
     try {
-      const isRegister = page === 'register'
       const response = await fetch(
         isRegister ? '/api/register' : '/api/login',
         {
           method: 'POST',
           credentials: 'same-origin',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: username.trim(),
+            password,
+          }),
         },
       )
 
-      const data: ApiResponse = await response.json()
+      const data: ApiResponse = await response.json().catch(() => ({}))
 
       if (!response.ok) {
         throw new Error(data.error || 'Wystąpił błąd.')
       }
 
-      setPassword('')
-
       if (isRegister) {
+        setPassword('')
         setPage('login')
-        setError('Konto utworzone. Możesz się teraz zalogować.')
-      } else if (data.user) {
-        navigate('/panel')
-      } else {
-        setError('Nie udało się zalogować.')
+        setSuccess('Konto utworzone. Możesz się teraz zalogować.')
+        return
       }
+
+      if (!data.user) {
+        throw new Error('Nie udało się zalogować.')
+      }
+
+      setPassword('')
+      navigate('/panel')
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Wystąpił nieznany błąd.')
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Wystąpił nieznany błąd.',
+      )
     } finally {
       setLoading(false)
     }
   }
 
-  const isRegister = page === 'register'
+  function switchPage() {
+    setError('')
+    setSuccess('')
+    setPassword('')
+    setPage(isRegister ? 'login' : 'register')
+  }
 
   return (
-    
-    
     <main className="auth-page">
-        <div className="ads">
+      <div className="ads">
+        <div className="advertisement1">
+          {/* Pierwsza reklama */}
+        </div>
 
-            <div className="advertisment1">
-     
+        <div className="advertisement2">
+          {/* Druga reklama */}
+        </div>
       </div>
 
-      <div className="advertisment2">
-        
-        
-      </div>
       <section className="auth-card">
-        <div className="brand-mark" aria-hidden="true">K</div>
+        <div className="brand-mark" aria-hidden="true">
+          K
+        </div>
+
         <p className="eyebrow">Komunikator bez nazwy</p>
-        <h1>{isRegister ? 'Utwórz konto' : 'Witaj ponownie'}</h1>
+
+        <h1>
+          {isRegister ? 'Utwórz konto' : 'Witaj ponownie'}
+        </h1>
+
         <p className="auth-description">
-          {isRegister ? 'Dołącz do rozmowy.' : 'Zaloguj się, aby kontynuować.'}
+          {isRegister
+            ? 'Dołącz do rozmowy.'
+            : 'Zaloguj się, aby kontynuować.'}
         </p>
 
         <form className="auth-form" onSubmit={handleSubmit}>
-          <label htmlFor="username">Nazwa użytkownika</label>
+          <label htmlFor="username">
+            Nazwa użytkownika
+          </label>
+
           <input
             id="username"
             type="text"
             autoComplete="username"
-            placeholder="np. cwel_123"
+            placeholder="np. user_123"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             minLength={3}
             maxLength={24}
             required
+            disabled={loading}
           />
 
-          <label htmlFor="password">Hasło</label>
+          <label htmlFor="password">
+            Hasło
+          </label>
+
           <input
             id="password"
             type="password"
-            autoComplete={isRegister ? 'new-password' : 'current-password'}
+            autoComplete={
+              isRegister ? 'new-password' : 'current-password'
+            }
             placeholder="Wpisz hasło"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            minLength={isRegister ? 8 : undefined}
             maxLength={128}
             required
+            disabled={loading}
           />
 
-          <button className="button button-primary" type="submit" disabled={loading}>
-            {loading ? 'Proszę czekać…' : isRegister ? 'Zarejestruj się' : 'Zaloguj się'}
+          <button
+            className="button button-primary"
+            type="submit"
+            disabled={loading}
+          >
+            {loading
+              ? 'Proszę czekać…'
+              : isRegister
+                ? 'Zarejestruj się'
+                : 'Zaloguj się'}
           </button>
         </form>
 
-        {error && <p className="form-message" role="status">{error}</p>}
+        {error && (
+          <p className="form-message" role="alert">
+            {error}
+          </p>
+        )}
+
+        {success && (
+          <p className="success-message" role="status">
+            {success}
+          </p>
+        )}
 
         <p className="auth-switch">
-          {isRegister ? 'Masz już konto?' : 'Nie masz jeszcze konta?'}
+          {isRegister
+            ? 'Masz już konto?'
+            : 'Nie masz jeszcze konta?'}
+
           <button
             className="text-button"
             type="button"
-            onClick={() => {
-              setError('')
-              setPage(isRegister ? 'login' : 'register')
-            }}
+            onClick={switchPage}
+            disabled={loading}
           >
             {isRegister ? 'Zaloguj się' : 'Utwórz konto'}
           </button>
         </p>
       </section>
-
-      
     </main>
   )
 }
@@ -154,7 +215,10 @@ export default function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/panel" element={<Panel />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route
+            path="*"
+            element={<Navigate to="/" replace />}
+          />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
