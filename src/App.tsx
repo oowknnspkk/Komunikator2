@@ -111,9 +111,7 @@ function LoginPage() {
         <div className="advertisement2">
           <img src={reklama2} alt="Reklama" />
         </div>
-        <div className="advertisement3">
-          <img src={reklama3} alt="Reklama" />
-        </div>
+      
       </div>
 
       <section className="auth-card">
