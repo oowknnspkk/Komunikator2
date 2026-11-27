@@ -1,7 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { createClient } from '@supabase/supabase-js'
 import jwt from 'jsonwebtoken'
-import { decryptMessage, encryptMessage } from './_crypto'
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -76,16 +75,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(500).json({ error: 'Nie udało się pobrać wiadomości.' })
     }
 
-    try {
-      const messages = (data ?? []).map(message => ({
-        ...message,
-        content: decryptMessage(message.content),
-      }))
-
-      return res.status(200).json({ messages })
-    } catch {
-      return res.status(500).json({ error: 'Nie udało się odszyfrować wiadomości.' })
-    }
+    return res.status(200).json({ messages: data ?? [] })
   }
 
   const content =
@@ -95,23 +85,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Wiadomość musi mieć od 1 do 4000 znaków.' })
   }
 
-  let encryptedContent: string
-
-  try {
-    encryptedContent = encryptMessage(content)
-  } catch (error) {
-    console.error('Nie można zaszyfrować wiadomości:', error)
-    return res.status(500).json({
-      error: 'Szyfrowanie wiadomości nie jest skonfigurowane. Sprawdź MESSAGE_ENCRYPTION_KEY.',
-    })
-  }
-
   const { data, error } = await supabase
     .from('messages')
     .insert({
       sender_id: userId,
       recipient_id: friendId,
-      content: encryptedContent,
+      content,
     })
     .select('id, sender_id, recipient_id, content, created_at')
     .single()
