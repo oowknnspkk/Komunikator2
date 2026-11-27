@@ -72,8 +72,9 @@ function LoginPage() {
   const isRegister = page === 'register'
 
   return (
-    <main className="auth-page">
-      <div className="advertisment1">
+    <div className="ads">
+
+            <div className="advertisment1">
       <img src="" alt="" />
 
       </div>
@@ -82,6 +83,9 @@ function LoginPage() {
         <img src="" alt="" />
         
       </div>
+    </div>
+    <main className="auth-page">
+
       <section className="auth-card">
         <div className="brand-mark" aria-hidden="true">K</div>
         <p className="eyebrow">Komunikator bez nazwy</p>
