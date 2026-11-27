@@ -101,7 +101,7 @@ function LoginPage() {
     <main className="auth-page">
       <div className="ads">
         <div className="advertisement1">
-          <img src={Reklama} alt="Reklama" />
+          <a href="https://samequizy.pl/powieksz-swojego-piekielnika/"><img src={Reklama} alt="Reklama" /></a>
         </div>
 
         <div className="advertisement2">
