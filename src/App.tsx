@@ -11,6 +11,7 @@ import {
 
 import Reklama from './assets/F3MEGC.gif'
 import reklama2 from './assets/reklama 2.jpg'
+import reklama3 from './assets/casino.jpg'
 import './App.css'
 import Panel from './Panel'
 import Settings from './Settings'
@@ -114,7 +115,7 @@ function LoginPage() {
 
     <div className="advertisement3">
 
-  
+  <img src="casino.jpg" alt="niesamowite kasyno online" />
     </div>
   </div>
 
