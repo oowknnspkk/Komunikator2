@@ -23,7 +23,8 @@
 
 .advertisement1,
 .advertisement2,
-.advertisement3 {
+.advertisement3,
+.advertisement4 {
   display: block;
   width: 180px;
   height: 320px;
@@ -41,7 +42,8 @@
 }
 
 .advertisement2,
-.advertisement3 {
+.advertisement3,
+.advertisement4 {
   background: var(--surface-muted);
   color: var(--text-muted);
 }
@@ -55,7 +57,8 @@
 
 .advertisement1 img,
 .advertisement2 img,
-.advertisement3 img {
+.advertisement3 img,
+.advertisement4 img {
   display: block;
   width: 180px;
   height: 320px;
@@ -255,7 +258,7 @@
 /* RESPONSYWNOŚĆ */
 
 /* Za wąsko na 3 reklamy + kartę: ukrywamy reklamy zamiast je zmniejszać */
-@media (max-width: 1150px) {
+@media (max-width: 1300px) {
   .ads {
     display: none;
   }
