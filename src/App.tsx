@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import {
@@ -103,21 +102,16 @@ function LoginPage() {
   return (
     <main className="auth-page">
       <div className="ads">
-    <div className="advertisement1">
-      <a href="https://samequizy.pl/powieksz-swojego-piekielnika/">
-        <img src={Reklama} alt="Reklama" />
-      </a>
-    </div>
+        <div className="advertisement1">
+          <a href="https://samequizy.pl/powieksz-swojego-piekielnika/">
+            <img src={Reklama} alt="Reklama" />
+          </a>
+        </div>
 
-    <div className="advertisement2">
-      <img src={reklama2} alt="Reklama" />
-    </div>
-
-    <div className="advertisement3">
-
-  <img src={reklama3} alt="niesamowite kasyno online" />
-    </div>
-  </div>
+        <div className="advertisement2">
+          <img src={reklama2} alt="Reklama" />
+        </div>
+      </div>
 
       <section className="auth-card">
         <div className="brand-mark" aria-hidden="true">
@@ -213,6 +207,12 @@ function LoginPage() {
           </button>
         </p>
       </section>
+
+      <div className="ads">
+        <div className="advertisement3">
+          <img src={reklama3} alt="Reklama kasyna online" />
+        </div>
+      </div>
     </main>
   )
 }
