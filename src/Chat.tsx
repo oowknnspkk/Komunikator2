@@ -104,11 +104,21 @@ export default function Chat() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ friendId, content }),
       })
-      const data = await response.json()
+      const data: { message?: Message; error?: string } = await response
+        .json()
+        .catch(() => ({}))
 
-      if (!response.ok) throw new Error(data.error || 'Nie udało się wysłać wiadomości.')
+      if (!response.ok) {
+        throw new Error(
+          data.error || `Serwer zwrócił błąd (${response.status}). Sprawdź konfigurację API.`,
+        )
+      }
 
-      setMessages(current => [...current, data.message])
+      if (!data.message) {
+        throw new Error('Serwer nie zwrócił wysłanej wiadomości.')
+      }
+
+      setMessages(current => [...current, data.message!])
       setContent('')
       setError('')
     } catch (err) {

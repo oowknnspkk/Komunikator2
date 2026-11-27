@@ -95,12 +95,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Wiadomość musi mieć od 1 do 4000 znaków.' })
   }
 
+  let encryptedContent: string
+
+  try {
+    encryptedContent = encryptMessage(content)
+  } catch (error) {
+    console.error('Nie można zaszyfrować wiadomości:', error)
+    return res.status(500).json({
+      error: 'Szyfrowanie wiadomości nie jest skonfigurowane. Sprawdź MESSAGE_ENCRYPTION_KEY.',
+    })
+  }
+
   const { data, error } = await supabase
     .from('messages')
     .insert({
       sender_id: userId,
       recipient_id: friendId,
-      content: encryptMessage(content),
+      content: encryptedContent,
     })
     .select('id, sender_id, recipient_id, content, created_at')
     .single()
