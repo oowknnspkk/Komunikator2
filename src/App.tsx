@@ -101,7 +101,7 @@ function LoginPage() {
     <main className="auth-page">
       <div className="ads">
         <div className="advertisement1">
-          <img src="{reklama}" alt="reklama" />
+          <img src={Reklama} alt="Reklama" />
         </div>
 
         <div className="advertisement2">
