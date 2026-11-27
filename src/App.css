@@ -59,8 +59,8 @@
 .advertisement2 img,
 .advertisement3 img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 130px;
+  height: 260px;
   object-fit: cover;
 }
 
